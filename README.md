@@ -3,28 +3,24 @@
 🦀  simple guessing game in rust, wip
 
 ```rust
+extern crate rand;
+
 use std::io;
-use std::io::Read;
-use std::fs::File;
+use rand::Rng;
 
-fn main() -> io::Result<()> {
-    println!("- guessing game -");
+fn main() {
+    loop {
+        println!("- guessing game -");
 
-    let mut x = File::open("./x")?;
-    let mut buffer = [0; 16];
-    let mut guess = String::new();
+        let mut guess = String::new();
+        let secret_number = rand::thread_rng().gen_range(1, 101);
+        
+        io::stdin().read_line(&mut guess)
+            .expect(":/ couldn't read line");
 
-    x.read(&mut buffer)?;
-    
-    io::stdin().read_line(&mut guess)
-        .expect(":/ couldn't read line");
-    
-    // removes trailing new-line char
-    guess.pop();
-    
-    println!("[{}]", guess);
-    println!("{:?}", buffer);
-
-    Ok(())
+        guess.pop();
+        
+        println!("[{}:{}]", guess, secret_number);
+    }
 }
 ```
