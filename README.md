@@ -1,6 +1,6 @@
 # guess
 
-🦀  simple guessing game in rust
+🦀  simple guessing game in rust, wip
 
 ```rust
 use std::io;
